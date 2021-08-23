@@ -7,13 +7,13 @@ const prefix = process.env['prefix']
 
 const token = process.env['token']
 
+module.exports = client;
+
+client.commands = new Collection()
+client.aliases = new Collection()
+
 client.on('ready', () => {
   console.log('i am online')
-})
-client.on('messageCreate' async message => {
-if (message.content === '+ping') {
-message.reply({ content: pong })
-}
 })
 
 client.login(token)
