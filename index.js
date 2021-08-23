@@ -9,6 +9,8 @@ const token = process.env['token']
 
 module.exports = client;
 
+require(`./handler`)(client);
+
 client.commands = new Collection()
 client.aliases = new Collection()
 
