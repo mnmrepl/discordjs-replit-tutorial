@@ -1,11 +1,14 @@
 const client = require('../index')
 
 const prefix = process.env['prefix']
+const { Collection, Discord } = require('discord.js')
+const Timeout = new Collection()
+const ms = require('ms')
 
 
 client.on('messageCreate', async (message) => {
   if (message.author.bot || !message.guild) return;
-
+  if (!message.content.startsWith('=')) return 
   const [cmd, ...args] = message.content
   .slice(prefix.length)
   .trim()
@@ -19,6 +22,13 @@ client.on('messageCreate', async (message) => {
 
     if (!message.member.permissions.has(command.BotPerms || [])) return message.reply({ content: `I need ${command.BotPerms || []} to run this command!`})
 
-    await command.run(client, message, args, Discord)
+    if (command.cooldown) {
+      if (Timeout.has(`${command.name}${message.author.id}`)) return message.reply({ content: `You are on a ${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {lomg : true})} cooldown.`})
+      command.run(client, message, args, Discord) 
+      Timeout.set(`${command.name}${message.author.id}`, Date.now() + command.cooldown)
+      setTimeout (() => {
+        Timeout.delete(`${command.name}${message.author.id}`)
+      }, command.cooldown)
+    } else command.run(client, message, args, Discord)
   }
 })
