@@ -20,7 +20,7 @@ client.on('messageCreate', async (message) => {
   if (command) {
     if (!message.member.permissions.has(command.UserPerms || [])) return message.reply({ content: `you need ${command.UserPerms} permission to use this command!`})
 
-    if (!message.member.permissions.has(command.BotPerms || [])) return message.reply({ content: `I need ${command.BotPerms || []} to run this command!`})
+    if (!message.guild.me.permissions.has(command.BotPerms || [])) return message.reply({ content: `I need ${command.BotPerms || []} to run this command!`})
 
     if (command.cooldown) {
       if (Timeout.has(`${command.name}${message.author.id}`)) return message.reply({ content: `You are on a ${ms(Timeout.get(`${command.name}${message.author.id}`) - Date.now(), {lomg : true})} cooldown.`})
