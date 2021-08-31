@@ -9,10 +9,12 @@ const token = process.env['token']
 
 module.exports = client;
 
-require(`./handler`)(client);
+require(`./handler`)(client)
+require('./handler/slashcommands')
 
 client.commands = new Collection()
 client.aliases = new Collection()
+client.slashcommands = new Collection()
 
 client.on('ready', () => {
   console.log('i am online')
