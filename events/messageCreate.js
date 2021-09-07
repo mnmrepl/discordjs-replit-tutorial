@@ -32,3 +32,22 @@ client.on('messageCreate', async (message) => {
     } else command.run(client, message, args, Discord)
   }
 })
+client.snipes = new Map();
+client.on('messageDelete', async function (message, channel) {
+  client.snipes.set(message.channel.id, {
+    content: message.content,
+    author: message.author.tag,
+    image: message.attachments.first() ? message.attachments.first().proxyURL : null // this is it for the regular snipe comamnd
+  })
+})
+client.esnipes = new Collection()
+client.on('messageUpdate', async (oldMes, newMes) => {
+  let esnipes = client.esnipes.get(oldMes.channel.id) || [];
+  if (esnipes.length > 5) esnipes = esnipes.slice(0, 4)
+  esnipes.unshift({
+    msg: oldMes,
+    newc: newMes,
+    author: oldMes.author
+  })
+  client.esnipes.set(oldMes.channel.id, esnipes)
+})
