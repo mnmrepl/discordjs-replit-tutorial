@@ -6,7 +6,7 @@ https://www.youtube.com/channel/UCCbFS8KVM7ny-Diyhvo6D_w
 
 Join my server if you need more help!
 
-https://discord.gg/Fm6spjWxXt
+https://discord.gg/mnmrepl
 
 
 How to find codes:
