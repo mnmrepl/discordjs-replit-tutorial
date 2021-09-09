@@ -1,7 +1,8 @@
 const { Collection, Client } = require('discord.js')
 const client = new Client({ intents: 32767 })
 const server = require('./server.js')
-
+const mongoose = require('mongoose');
+mongoose.connect(process.env['mongo'], { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log('Connected to the database.'));
 
 const prefix = process.env['prefix']
 
