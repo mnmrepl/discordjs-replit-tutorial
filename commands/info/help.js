@@ -1,11 +1,5 @@
-const {
-    MessageEmbed,
-    Message,
-    Client
-} = require("discord.js");
-const {
-    readdirSync
-} = require("fs");
+const { MessageEmbed, Message, Client } = require("discord.js");
+const { readdirSync } = require("fs");
 const client = require('../../index')
 const prefix = process.env['prefix'] 
 let color = "#ff0000"; // color of the main embed
