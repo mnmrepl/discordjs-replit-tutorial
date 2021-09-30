@@ -4,7 +4,7 @@ module.exports = {
   name: 'blacklist', 
   aliases: ['blist'],
   run: async (client, message, args, Discord) => {
-    if (message.author.id !== '794359225157550140') return message.reply({ content: 'Only my developer can use this command!'})
+    if (message.author.id !== 'your id here') return message.reply({ content: 'Only my developer can use this command!'})
     const user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
     if (!user) return message.reply({ content: 'Please specify someone to blacklist'})
